@@ -1,0 +1,15 @@
+D:\program\C#\GithubAccelerator\obj\Debug\netcoreapp3.1\GithubAccelerator.AssemblyInfoInputs.cache
+D:\program\C#\GithubAccelerator\obj\Debug\netcoreapp3.1\GithubAccelerator.AssemblyInfo.cs
+D:\program\C#\GithubAccelerator\bin\Debug\netcoreapp3.1\GithubAccelerator.exe
+D:\program\C#\GithubAccelerator\bin\Debug\netcoreapp3.1\GithubAccelerator.deps.json
+D:\program\C#\GithubAccelerator\bin\Debug\netcoreapp3.1\GithubAccelerator.runtimeconfig.json
+D:\program\C#\GithubAccelerator\bin\Debug\netcoreapp3.1\GithubAccelerator.runtimeconfig.dev.json
+D:\program\C#\GithubAccelerator\bin\Debug\netcoreapp3.1\GithubAccelerator.dll
+D:\program\C#\GithubAccelerator\bin\Debug\netcoreapp3.1\GithubAccelerator.pdb
+D:\program\C#\GithubAccelerator\obj\Debug\netcoreapp3.1\GithubAccelerator.dll
+D:\program\C#\GithubAccelerator\obj\Debug\netcoreapp3.1\GithubAccelerator.pdb
+D:\program\C#\GithubAccelerator\obj\Debug\netcoreapp3.1\GithubAccelerator.genruntimeconfig.cache
+D:\program\C#\GithubAccelerator\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\program\C#\GithubAccelerator\obj\Debug\netcoreapp3.1\GithubAccelerator.csproj.CopyComplete
+D:\program\C#\GithubAccelerator\obj\Debug\netcoreapp3.1\GithubAccelerator.csproj.CoreCompileInputs.cache
+D:\program\C#\GithubAccelerator\obj\Debug\netcoreapp3.1\GithubAccelerator.csprojAssemblyReference.cache
