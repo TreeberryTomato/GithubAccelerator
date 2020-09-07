@@ -29,13 +29,12 @@ namespace GithubAccelerator
 		public void Accelerate()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append("#Github Accelerator, Author-ChenWeihao\n");
+			sb.Append($"\n\n#Github Accelerator, Author: ChenWeihao, Update on {DateTime.UtcNow}\n");
 			foreach (string site in Sites)
 			{
-				sb.Append(site+" ");
-				sb.Append(GetIP(site) + "\n");
+				sb.Append(GetIP(site)+" "+site+"\n");
 			}
-			sb.Append("#End of the accelerated hosts list");
+			sb.Append("#End of the accelerated hosts list\n\n");
 			string hostsLocation = @"C:\Windows\System32\drivers\etc\hosts";
 
 			if (File.Exists(hostsLocation))
