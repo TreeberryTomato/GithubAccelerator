@@ -30,7 +30,7 @@ namespace GithubAccelerator
 		public void Accelerate()
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append($"\n\n#Github Accelerator, Author: ChenWeihao, Update on {DateTime.UtcNow}\n");
+			sb.Append($"#Github Accelerator, Author: ChenWeihao, Update on {DateTime.UtcNow}");
 
 			Console.WriteLine("Two ways to increase speed, input 1 to use way 1 and 2 for way 2: ");
 			string choice = Console.ReadLine();
@@ -57,7 +57,6 @@ namespace GithubAccelerator
 				default:
 					Console.WriteLine("Invalid Choice");
 					return;
-					break;
 			}
 
 			
@@ -67,7 +66,7 @@ namespace GithubAccelerator
 			if (File.Exists(hostsLocation))
 			{
 				string strContent = File.ReadAllText(hostsLocation);
-				strContent = Regex.Replace(strContent, @"#Github Accelerator, Author-ChenWeihao[\s\S]*#End of the accelerated hosts list", "")+sb.ToString();
+				strContent = Regex.Replace(strContent, @"#Github Accelerator, Author: ChenWeihao[\s\S]*#End of the accelerated hosts list", "")+sb.ToString();
 				File.WriteAllText(hostsLocation, strContent);
 				Console.WriteLine("Successfully write hosts info to hosts file");
 			}
