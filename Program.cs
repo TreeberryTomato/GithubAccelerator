@@ -11,6 +11,8 @@ namespace GithubAccelerator
 			using (WindowsIdentity wi = WindowsIdentity.GetCurrent()) // 用户
 			{
 				WindowsPrincipal wp = new WindowsPrincipal(wi);  // 用户组
+
+				//调试的时候把下方if里最前面感叹号去掉
 				if (!wp.IsInRole(WindowsBuiltInRole.Administrator)) // 用户是否属于管理员
 				{
 					Console.WriteLine("请使用管理员登录打开此程序\nPlease run as Administrator");

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using HtmlAgilityPack;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Diagnostics;
@@ -30,10 +31,36 @@ namespace GithubAccelerator
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append($"\n\n#Github Accelerator, Author: ChenWeihao, Update on {DateTime.UtcNow}\n");
-			foreach (string site in Sites)
+
+			Console.WriteLine("Two ways to increase speed, input 1 to use way 1 and 2 for way 2: ");
+			string choice = Console.ReadLine();
+
+			switch(choice)
 			{
-				sb.Append(GetIP(site)+" "+site+"\n");
+				case "1":
+					foreach (string site in Sites)
+					{
+						string IP = GetIP_1(site);
+						Console.WriteLine(string.Format("{0,-40}{1,0}", site, IP));
+						sb.Append(IP + " " + site + "\n");
+					}
+					break;
+
+				case "2":
+					foreach (string site in Sites)
+					{
+						string IP = GetIP_2(site);
+						Console.WriteLine(string.Format("{0,-40}{1,0}", site, IP));
+						sb.Append(IP + " " + site + "\n");
+					}
+					break;
+				default:
+					Console.WriteLine("Invalid Choice");
+					return;
+					break;
 			}
+
+			
 			sb.Append("#End of the accelerated hosts list\n\n");
 			string hostsLocation = @"C:\Windows\System32\drivers\etc\hosts";
 
@@ -65,8 +92,8 @@ namespace GithubAccelerator
 			p.Close();
 		}
 		
-
-		private string GetIP(string url)
+		//get ip from www.ip.cn
+		private string GetIP_1(string url)
 		{
 			try
 			{
@@ -91,8 +118,46 @@ namespace GithubAccelerator
 				myResponseStream.Close();
 
 				JObject jo = (JObject)JsonConvert.DeserializeObject(retString);
-				Console.WriteLine(string.Format("{0,-40}{1,0}", url, jo["ip"]));
 				return jo["ip"].ToString();
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e.Message);
+				return "";
+			}
+		}
+
+		//get ip from haoip.cn
+		private string GetIP_2(string url)
+		{
+			try
+			{
+				string api = "https://haoip.cn/ip/";
+				string requestURL = api+url;
+
+				HttpWebRequest request = (HttpWebRequest)WebRequest.Create(requestURL);
+				request.Method = "GET";
+				request.ContentType = "text/html;charset=UTF-8";
+				request.UserAgent = "Mozilla / 5.0(Windows NT 10.0; Win64; x64; rv: 80.0) Gecko / 20100101 Firefox / 80.0";
+				request.Timeout = 10 * 1000; //10 seconds
+				request.ContentType = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8";
+				request.Host = "haoip.cn";
+				request.KeepAlive = true;
+				request.Proxy = null;
+
+				HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+				Stream myResponseStream = response.GetResponseStream();
+				StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.GetEncoding("utf-8"));
+				string html = myStreamReader.ReadToEnd();
+				myStreamReader.Close();
+				myResponseStream.Close();
+
+				HtmlDocument doc = new HtmlDocument();
+				doc.LoadHtml(html);
+
+				string xpath1 = "//code[@class=\"text-primary bg-info\"]";
+				var nodes = doc.DocumentNode.SelectNodes(xpath1);
+				return nodes[1].InnerHtml;
 			}
 			catch (Exception e)
 			{
